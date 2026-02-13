@@ -1,5 +1,3 @@
-from config import API_KEY
-
 # Weather CLI Application
 
 > A feature-rich command-line weather application that provides real-time weather data, city comparisons, search history, and favorites management.
