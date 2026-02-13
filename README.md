@@ -1,3 +1,5 @@
+from config import API_KEY
+
 # Weather CLI Application
 
 > A feature-rich command-line weather application that provides real-time weather data, city comparisons, search history, and favorites management.
@@ -51,7 +53,7 @@ Weather CLI is a terminal-based application that provides comprehensive weather 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd weather_cli
+   cd CLI-weather-app
    ```
 
 2. **Install dependencies**
@@ -59,7 +61,28 @@ Weather CLI is a terminal-based application that provides comprehensive weather 
    pip install -r requirements.txt
    ```
 
-3. **Verify installation**
+3. **Configure API Key**
+   
+   You need to obtain a free API key from OpenWeatherMap:
+   
+   a. Visit [OpenWeatherMap API](https://openweathermap.org/api) and sign up for a free account
+   
+   b. Generate your API key from your account dashboard
+   
+   c. Copy `config.example.py` to `config.py`:
+      ```bash
+      copy config.example.py config.py
+      ```
+   
+   d. Open `config.py` and replace `PUT_YOUR_API_KEY_HERE` with your actual API key:
+      ```python
+      API_KEY = 'your_actual_api_key_here'
+      DATABASE_URL = 'https://api.openweathermap.org/data/2.5'
+      ```
+   
+   ⚠️ **Important**: Never commit `config.py` to version control. It's already included in `.gitignore` to protect your API key.
+
+4. **Verify installation**
    Ensure all dependencies are installed:
    - `requests` - For API communication
    - `rich` - For terminal UI enhancement
@@ -120,20 +143,23 @@ Upon launching, you'll be greeted with an interactive menu that guides you throu
 ## 📁 Project Structure
 
 ```
-weather_cli/
+CLI-weather-app/
 │
-├── main.py              # Entry point - wires together all modules
-├── api.py               # OpenWeatherMap API integration
-├── ui.py                # Rich-based terminal UI components
-├── db.py                # SQLite database operations
-├── charts.py            # Matplotlib chart generation
-├── config.py            # Configuration (API keys, endpoints)
-├── requirements.txt     # Python dependencies
-├── README.md            # Project documentation
+├── main.py                  # Entry point - wires together all modules
+├── api.py                   # OpenWeatherMap API integration
+├── ui.py                    # Rich-based terminal UI components
+├── db.py                    # SQLite database operations
+├── charts.py                # Matplotlib chart generation
+├── config.example.py        # Configuration template (tracked in Git)
+├── config.py                # Your API key configuration (NOT in Git)
+├── requirements.txt         # Python dependencies
+├── README.md                # Project documentation
+├── .gitignore               # Git ignore rules
 │
-├── weather_database.db  # SQLite database (auto-generated)
-├── comparisons/         # Saved weather charts
-└── __pycache__/         # Python cache files
+├── weather_database.db      # SQLite database (auto-generated, NOT in Git)
+├── comparisons/             # Saved weather charts (NOT in Git)
+├── history/                 # Exported CSV files (NOT in Git)
+└── __pycache__/             # Python cache files (NOT in Git)
 ```
 
 ### Module Responsibilities
@@ -143,7 +169,17 @@ weather_cli/
 - **`ui.py`**: Manages all terminal output using Rich library for beautiful formatting
 - **`db.py`**: Encapsulates all database operations for search history and favorites
 - **`charts.py`**: Generates and saves visual temperature charts using Matplotlib
-- **`config.py`**: Centralizes configuration variables for easy maintenance
+- **`config.py`**: Centralizes configuration variables (API key, endpoints) - **You must create this from config.example.py**
+- **`config.example.py`**: Template configuration file that's safe to commit to version control
+
+### Files Not Tracked in Git
+
+The following files/directories are excluded via `.gitignore` to protect sensitive data and avoid clutter:
+- `config.py` - Contains your personal API key
+- `weather_database.db` - Your local search history and favorites
+- `comparisons/` - Generated chart images
+- `history/` - Exported CSV files
+- `__pycache__/` - Python bytecode cache
 
 ---
 
@@ -238,10 +274,10 @@ This project was developed as a collaborative effort by:
 
 ## 📝 Notes
 
-- **API Key**: The application uses a hardcoded API key in `config.py`. For production use, consider using environment variables.
-- **Rate Limiting**: OpenWeatherMap free tier has request limits. Use responsibly.
+- **API Key**: You must create `config.py` from `config.example.py` and add your own OpenWeatherMap API key. The `config.py` file is excluded from Git to protect your credentials.
+- **Rate Limiting**: OpenWeatherMap free tier has request limits (60 calls/minute, 1,000,000 calls/month). Use responsibly.
 - **Charts**: All generated charts are saved in the `comparisons/` directory with timestamps.
-- **Database**: The SQLite database (`weather_database.db`) is created automatically on first run.
+- **Database**: The SQLite database (`weather_database.db`) is created automatically on first run and stores your search history and favorites locally.
 
 ---
 
@@ -255,6 +291,12 @@ This project is provided as-is for educational purposes.
 
 ### Common Issues
 
+**Missing config.py File**
+```bash
+copy config.example.py config.py
+```
+Then edit `config.py` and add your OpenWeatherMap API key.
+
 **Import Errors**
 ```bash
 pip install -r requirements.txt
@@ -262,11 +304,12 @@ pip install -r requirements.txt
 
 **API Connection Issues**
 - Check your internet connection
-- Verify the API key in `config.py` is valid
-- Check OpenWeatherMap service status
+- Verify the API key in `config.py` is valid and properly formatted
+- Ensure you've copied `config.example.py` to `config.py`
+- Check OpenWeatherMap service status at https://status.openweathermap.org/
 
 **Database Errors**
-- Delete `weather_database.db` and restart the application
+- Delete `weather_database.db` and restart the application to create a fresh database
 - Check file permissions in the project directory
 
 ---

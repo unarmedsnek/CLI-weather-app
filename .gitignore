@@ -191,8 +191,10 @@ config_local.py
 weather_database.db
 
 # Ignore saved output: history and comparison images
-history/
-comparisons/
+history/*
+comparisons/*
+!history/.gitkeep
+!comparisons/.gitkeep
 
 # Ignore any generated comparison images explicitly
 comparisons/*.png

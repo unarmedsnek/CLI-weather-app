@@ -6,10 +6,11 @@ API module for fetching weather data from the OpenWeatherMap API and handling po
 
 import requests
 from config import API_KEY
+from config import DATABASE_URL
 import ui
 
 # The API endpoint
-url = "https://api.openweathermap.org/data/2.5/weather"
+url = DATABASE_URL
 
 def get_weather(city):
     """Fetches weather data for a specified city from the OpenWeatherMap API."""
