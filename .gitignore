@@ -179,3 +179,21 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# -----------------------------------------------------------------------------
+# Project-specific ignores
+# Ignore configuration that contains API keys/secrets
+config.py
+# Optional local override (if you use it)
+config_local.py
+
+# Ignore the project's SQLite database
+weather_database.db
+
+# Ignore saved output: history and comparison images
+history/
+comparisons/
+
+# Ignore any generated comparison images explicitly
+comparisons/*.png
+# -----------------------------------------------------------------------------
