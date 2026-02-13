@@ -1,3 +1,4 @@
+# Created by: Ahmad Tomeh
 """
 API module for fetching weather data from the OpenWeatherMap API and handling potential errors.
 - Uses the `requests` library to make HTTP requests to the API.

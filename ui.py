@@ -1,3 +1,4 @@
+# Created by: Emilijus Kanapeckas
 """
 Terminal UI for the Weather App (Rich-powered).
 

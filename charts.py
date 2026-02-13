@@ -1,3 +1,4 @@
+# Created by: Ahmad Tomeh
 """
 This module contains functions to create and save charts for weather data about more than one city
 

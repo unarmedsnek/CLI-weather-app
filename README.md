@@ -2,7 +2,7 @@
 
 > A feature-rich command-line weather application that provides real-time weather data, city comparisons, search history, and favorites management.
 
-**Developed by:** Emilijus Kanapeckas & Ahmad Tohme
+**Developed by:** Emilijus Kanapeckas & Ahmad Tomeh
 
 ---
 

@@ -1,3 +1,4 @@
+# Created by: Emilijus Kanapeckas
 """
 This module provides functions to manage the SQLite database for storing weather search history and favorite cities.
 It includes functions to initialize the database, save search results, retrieve search history, clear history, and manage favorite cities.
