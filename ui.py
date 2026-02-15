@@ -45,7 +45,7 @@ def main_meniu() -> None:
         "[bold cyan]5.[/bold cyan] Export search history to CSV\n"
         "[bold cyan]6.[/bold cyan] Clear search history\n"
         "[bold cyan]7.[/bold cyan] Exit",
-        title="[bold magenta]Weather App Meniu[/bold magenta]",
+        title="[bold magenta]Weather App Menu[/bold magenta]",
         border_style="bright_blue"
     ))
 
@@ -67,7 +67,14 @@ def show_weather(weather: dict) -> None:
 
     t = Table(title=f"Weather in {weather['city']}, {weather['country']}", box=rich.box.SQUARE)
     t.add_column("Description", style="cyan")
-    t.add_column("Temperature (°C)", style="magenta")
+
+    if weather['temp'] < 10:
+        t.add_column("Temperature (°C)", style="blue")
+    elif weather['temp'] < 25:
+        t.add_column("Temperature (°C)", style="yellow")
+    else:
+        t.add_column("Temperature (°C)", style="red")
+
     t.add_column("Feels Like (°C)", style="cyan")
     t.add_column("Humidity (%)", style="cyan")
     t.add_column("Wind Speed (m/s)", style="cyan")
