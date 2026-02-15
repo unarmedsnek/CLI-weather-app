@@ -5,4 +5,4 @@ What this file does:
 """""
 
 API_KEY = 'PUT_YOUR_API_KEY_HERE'
-DATABASE_URL = 'https://api.openweathermap.org/data/2.5'
+DATABASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
